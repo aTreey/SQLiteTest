@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <sqlite3.h>
 #import "PPStudentDBTool.h"
+#import "PPStudent.h"
 
 @interface ViewController ()
 {
@@ -34,8 +35,13 @@
 
  */
     
-    [PPStudentDBTool insertWithStudent:nil];
+//    [self inserStudent];
+//    [self inserStudent1];
+//    [self inserStudent2];
+//    
+//    [self updateStudent];
     
+    [self queryAll];
     
 }
 
@@ -43,6 +49,49 @@
     
 }
 
+/*=================使用FMDB=============================**/
+
+
+#pragma mark 插入一条记录
+- (void)inserStudent {
+    PPStudent *student1 = [PPStudent new];
+    student1.name = @"学生1";
+    student1.age = @26;
+    [PPStudentDBTool insertWithStudent:student1];
+}
+
+
+- (void)inserStudent1 {
+    PPStudent *student1 = [PPStudent new];
+    student1.name = @"小王八";
+    student1.age = @19;
+    [PPStudentDBTool insertWithStudent:student1];
+}
+
+
+- (void)inserStudent2 {
+    PPStudent *student1 = [PPStudent new];
+    student1.name = @"王大锤";
+    student1.age = @27;
+    [PPStudentDBTool insertWithStudent:student1];
+}
+
+#pragma mark 修改数据
+
+- (void)updateStudent {
+    PPStudent *student2 = [PPStudent new];
+    student2.name = @"小子李";
+    student2.age = @18;
+    [PPStudentDBTool updateStudent:student2];
+}
+
+#pragma mark 查询
+
+- (void)queryAll {
+    [PPStudentDBTool queryAllStudent];
+}
+
+/*==================使用SQLite语句创建表===================**/
 
 #pragma mark -
 #pragma mark SQL使用

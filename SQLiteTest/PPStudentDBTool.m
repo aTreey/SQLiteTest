@@ -36,16 +36,34 @@ static FMDatabase *_db;
     BOOL isOpen = [_db open];
     if (isOpen) {
         // creat
-        BOOL isCreate = [_db executeUpdate:@"create table if not exists t_student (id integer primay key,name text not null,age integer not null);"];
+        BOOL isCreate = [_db executeUpdate:@"create table if not exists t_student (id integer primary key,name text not null,age integer not null);"];
         if (isCreate) {
             NSLog(@"create table success");
         }
     }
 }
 
-
+// 插入数据
 + (void)insertWithStudent:(PPStudent *)student {
-    
+    BOOL isInsert = [_db executeUpdateWithFormat:@"insert into t_student (name,age) values (%@, %@);", student.name, student.age];
+    if (isInsert) NSLog(@"insert success");
+}
+
+// 修改数据
++ (void)updateStudent:(PPStudent *)student {
+    BOOL isUpdate = [_db executeUpdateWithFormat:@"update t_student set name = %@, age = %@ where id = 2;", student.name, student.age];
+    if (isUpdate) {
+        NSLog(@"update success");
+    }
+}
+
++ (void)queryAllStudent {
+    FMResultSet *result = [_db executeQuery:@"select * from t_student;"];
+    while ([result next]) {// 有记录时
+        NSString *name = [result stringForColumn:@"name"];
+        int age = [result intForColumn:@"age"];
+        NSLog(@"name = %@, age = %d", name, age);
+    }
 }
 
 

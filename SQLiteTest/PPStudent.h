@@ -10,4 +10,7 @@
 
 @interface PPStudent : NSObject
 
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSNumber *age;
+
 @end

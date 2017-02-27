@@ -11,12 +11,14 @@
 
 @interface PPStudentDBTool : NSObject
 
-
-/**
- 插入
-
- @param student 对象
- */
+/*新增一条数据*/
 + (void)insertWithStudent:(PPStudent *)student;
+
+
+/*修改数据*/
++ (void)updateStudent:(PPStudent *)student;
+
+/*查询数据*/
++ (void)queryAllStudent;
 
 @end
